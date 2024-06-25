@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: workshop-cert 
+spec:
+  secretName: workshop-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: workshop-cert.light-eg.xyz
+  dnsNames:
+  - workshop-cert.light-eg.xyz
+  - '*.workshop-cert.light-eg.xyz'
+

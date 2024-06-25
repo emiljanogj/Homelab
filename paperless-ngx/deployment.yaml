@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx
+  namespace: paperless
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx
+    spec:
+      containers:
+      - name: paperless-ngx
+        image: ghcr.io/paperless-ngx/paperless-ngx:latest
+        env:
+        - name: REDIS_URL
+          value: redis://redis:6379
+        - name: DATABASE_URL
+          value: postgres://paperless:securepassword@postgresql:5432/paperless
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - mountPath: /data
+          name: paperless-storage
+      volumes:
+      - name: paperless-storage
+        persistentVolumeClaim:
+          claimName: paperless-pvc
