@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: plex
+  name: plex-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      hostNetwork: true
+      containers:
+      - name: plex
+        image: lscr.io/linuxserver/plex:latest
+        envFrom:
+        - configMapRef:
+            name: plex-config
+        volumeMounts:
+        - name: plex-config-volume
+          mountPath: /home/elight/plex/config
+        - name: plex-movies-volume
+          mountPath: /home/elight/plex/movies
+        - name: plex-music-volume
+          mountPath: /home/elight/plex/music
+        resources:
+          limits:
+            memory: "30Gi"
+            cpu: "2"
+          requests:
+            memory: "25Gi"
+            cpu: "2"
+      volumes:
+      - name: plex-config-volume
+        persistentVolumeClaim:
+          claimName: plex-config-pvc
+      - name: plex-movies-volume
+        persistentVolumeClaim:
+          claimName: movies-pvc
+      - name: plex-music-volume
+        persistentVolumeClaim:
+          claimName: music-pvc
