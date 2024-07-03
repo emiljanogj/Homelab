@@ -5,18 +5,22 @@ metadata:
   namespace: plex
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     external-dns.alpha.kubernetes.io/hostname: plex.light-eg.xyz
+
 spec:
   ingressClassName: nginx
   rules:
-  - host: plex.light-eg.xyz 
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: plex 
-            port:
-              number: 8080
+    - host: plex.light-eg.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: plex
+                port:
+                  number: 32400 
 
