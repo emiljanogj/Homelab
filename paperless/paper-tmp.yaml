@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"paperless","namespace":"paperless"},"spec":{"externalIPs":["192.168.191.221"],"ports":[{"port":8000}],"selector":{"app":"paperless"},"type":"LoadBalancer"}}
+    metallb.universe.tf/ip-allocated-from-pool: nat
+  creationTimestamp: "2024-06-11T13:53:37Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  name: paperless
+  namespace: paperless
+  resourceVersion: "375096"
+  uid: 90dbf2ce-78b4-4585-ae8f-a622837c364c
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.43.42.216
+  clusterIPs:
+  - 10.43.42.216
+  externalIPs:
+  - 192.168.191.221
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31087
+    port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: paperless
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.191.223
