@@ -5,6 +5,7 @@ metadata:
   labels:
     app: ubuntu
 spec:
+  dnsPolicy: "Default"
   containers:
   - image: ubuntu
     command:
@@ -21,4 +22,6 @@ spec:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - elight-standard-pc-i440fx-piix-1996 
+                  - elight-standard-pc-i440fx-piix-1996
+
+

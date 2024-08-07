@@ -58,7 +58,7 @@ spec:
                   name: admin-credentials
                   key: password
             - name: PAPERLESS_URL
-              value: "https://paperless.light-eg.xyz"
+              value: "https://paper.light-eg.xyz"
             - name: PAPERLESS_BIND_ADDR
               value: "0.0.0.0"
             - name: PAPERLESS_PORT
