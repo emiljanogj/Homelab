@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless-ingress
+  namespace: paperless
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    external-dns.alpha.kubernetes.io/hostname: paper.light-eg.xyz
+    cert-manager.io/cluster-issuer: cert-issuer 
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - paper.light-eg.xyz
+    secretName: paperless-cert-tls
+  rules:
+  - host: paper.light-eg.xyz 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: paperless 
+            port:
+              number: 8000
+

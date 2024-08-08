@@ -1,0 +1,19 @@
+cloudflare:
+  tunnelName: "paper-tunnel"
+  tunnelId: "4bc8e15f-e0da-46fb-9adc-9e5857819c4f"
+  secretName: "tunnel-credentials"
+  ingress:
+    - hostname: "*.light-eg.xyz"
+      service: "https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443"
+      originRequest:
+        noTLSVerify: true
+
+resources:
+  limits:
+    cpu: "100m"
+    memory: "128Mi"
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+
+replicaCount: 1

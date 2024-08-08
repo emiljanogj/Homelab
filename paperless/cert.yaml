@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: paperless-cert
+  namespace: paperless 
+spec:
+  secretName: paperless-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: paper.light-eg.xyz
+  dnsNames:
+  - paper.light-eg.xyz
+  - '*.paper.light-eg.xyz'
+

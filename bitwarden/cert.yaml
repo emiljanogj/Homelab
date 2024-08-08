@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: bitwarden-cert
+  namespace: bitwarden 
+spec:
+  secretName: bitwarden-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: bitwarden.light-eg.xyz
+  dnsNames:
+  - bitwarden.light-eg.xyz
+  - '*.bitwarden.light-eg.xyz'
+

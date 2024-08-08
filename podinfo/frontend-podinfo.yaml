@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: frontend
+    meta.helm.sh/release-namespace: test
+  creationTimestamp: "2024-07-20T15:17:22Z"
+  labels:
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: frontend-podinfo
+    app.kubernetes.io/version: 6.7.0
+    helm.sh/chart: podinfo-6.7.0
+  name: frontend-podinfo
+  namespace: test
+  resourceVersion: "1360"
+  uid: 31e2af4b-0d06-498a-b9b7-01562e372e51
+spec:
+  clusterIP: 10.43.242.44
+  clusterIPs:
+  - 10.43.242.44
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 9898
+    protocol: TCP
+    targetPort: http
+  - name: grpc
+    port: 9999
+    protocol: TCP
+    targetPort: grpc
+  selector:
+    app.kubernetes.io/name: frontend-podinfo
+  sessionAffinity: None
+  type: LoadBalancer 
+status:
+  loadBalancer:
+    ingress:
+    - ip: 192.168.191.223
