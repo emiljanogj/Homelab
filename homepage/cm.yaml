@@ -31,6 +31,16 @@ data:
             href: https://plex.light-eg.xyz
             description: Plex Server
 
+    - Password Management:
+        - Vaultwarden Service:
+            href: https://vaultwarden.light-eg.xyz
+            description: Vaultwarden Password Management
+
+    - Docker Container Management:
+        - KASM:
+            href: https://kasm.light-eg.xyz
+            description: Stream Docker Containers to the Browser
+
   widgets.yaml: |
     - kubernetes:
         cluster:
