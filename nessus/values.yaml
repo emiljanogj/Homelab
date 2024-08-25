@@ -1,0 +1,10 @@
+persistentVolumeClaim:
+  size: 900Gi
+
+resources:
+  limits:
+    cpu: 16000m
+    memory: 64Gi
+  requests:
+    cpu: 16000m
+    memory: 64Gi

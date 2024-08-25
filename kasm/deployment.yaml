@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kasm-deployment
+  namespace: kasm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kasm
+  template:
+    metadata:
+      labels:
+        app: kasm
+    spec:
+      containers:
+      - name: kasm
+        image: lscr.io/linuxserver/kasm:latest
+        ports:
+        - containerPort: 443
+        - containerPort: 3000
+        env:
+        - name: KASM_PORT
+          value: "443"
+        - name: DOCKER_HUB_USERNAME
+          value: "lightgj"  
+        - name: DOCKER_HUB_PASSWORD
+          value: "Egj19967@"  
+        - name: DOCKER_MTU
+          value: "1500"   
+        volumeMounts:
+        - mountPath: /opt
+          name: data-volume
+        - mountPath: /profiles
+          name: profiles-volume  # optional
+        - mountPath: /dev/input
+          name: input-volume      # optional
+        - mountPath: /run/udev/data
+          name: udev-data-volume  # optional
+        securityContext:
+          privileged: true
+      volumes:
+      - name: data-volume
+        hostPath:
+          path: /mnt/kasm/data 
+      - name: profiles-volume   # optional
+        hostPath:
+          path: /mnt/kasm/profiles
+      - name: input-volume      # optional
+        hostPath:
+          path: /dev/input
+      - name: udev-data-volume  # optional
+        hostPath:
+          path: /run/udev/data
+

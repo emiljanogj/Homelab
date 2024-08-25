@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nessus-ingress
+  namespace: nessus 
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true" 
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    external-dns.alpha.kubernetes.io/hostname: nessus.light-eg.xyz
+    cert-manager.io/cluster-issuer: cert-issuer 
+    external-dns.alpha.kubernetes.io/target: 4bc8e15f-e0da-46fb-9adc-9e5857819c4f.cfargotunnel.com
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - nessus.light-eg.xyz
+    secretName: nessus-cert-tls
+  rules:
+  - host: nessus.light-eg.xyz 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nessus-svc
+            port:
+              number: 8834 
+

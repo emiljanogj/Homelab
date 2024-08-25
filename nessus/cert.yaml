@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nessus-cert
+  namespace: nessus
+spec:
+  secretName: nessus-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: nessus.light-eg.xyz
+  dnsNames:
+  - nessus.light-eg.xyz
+  - '*.nessus.light-eg.xyz'
+

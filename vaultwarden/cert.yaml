@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vaultwarden-cert
+  namespace: vaultwarden 
+spec:
+  secretName: vaultwarden-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: vaultwarden.light-eg.xyz
+  dnsNames:
+  - vaultwarden.light-eg.xyz
+  - '*.vaultwarden.light-eg.xyz'
+

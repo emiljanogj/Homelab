@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage 
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    external-dns.alpha.kubernetes.io/hostname: home.light-eg.xyz
+    cert-manager.io/cluster-issuer: cert-issuer 
+    external-dns.alpha.kubernetes.io/target: 4bc8e15f-e0da-46fb-9adc-9e5857819c4f.cfargotunnel.com
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    gethomepage.dev/description: Emi-Homelab Homepage
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Cluster Management
+    gethomepage.dev/icon: homepage.png
+    gethomepage.dev/name: Homepage
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - home.light-eg.xyz
+    secretName: home-cert-tls
+  rules:
+  - host: home.light-eg.xyz 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: homepage 
+            port:
+              number: 3000
+

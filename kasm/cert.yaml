@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kasm-cert
+  namespace: kasm 
+spec:
+  secretName: kasm-cert-tls
+  issuerRef:
+    name: cert-issuer
+    kind: ClusterIssuer
+  commonName: kasm.light-eg.xyz
+  dnsNames:
+  - kasm.light-eg.xyz
+  - '*.kasm.light-eg.xyz'
+

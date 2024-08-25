@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nessus
+  name: nessus
+  labels:
+    app: nessus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nessus
+  template:
+    metadata:
+      labels:
+        app: nessus
+    spec:
+      containers:
+      - name: nessus
+        image: tenable/nessus:latest-ubuntu
+        ports:
+        - containerPort: 8834
+        env:
+        - name: USERNAME
+          value: "admin"
+        - name: PASSWORD
+          value: "Egj19967@"
+        - name: ACTIVATION_CODE
+          value: "S48Q-WD5J-8HTK-C26L-HR9Z"
+      restartPolicy: Always
+
