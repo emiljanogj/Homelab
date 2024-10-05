@@ -40,6 +40,11 @@ data:
         - KASM:
             href: https://kasm.light-eg.xyz
             description: Stream Docker Containers to the Browser
+    
+    - Vulnerability Scanning:
+        - CVE Scanning:
+            href: https://nessus.light-eg.xyz
+            description: Scan for CVEs 
 
   widgets.yaml: |
     - kubernetes:

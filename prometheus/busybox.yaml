@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: busybox1
+  name: busybox
 spec:
   containers:
   - name: busybox
@@ -15,4 +15,4 @@ spec:
               - key: kubernetes.io/hostname
                 operator: In
                 values:
-                  - elight-standard-pc-i440fx-piix-1996 
+                  - emi-homelab 

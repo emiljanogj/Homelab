@@ -230,11 +230,13 @@ podDisruptionBudget:
 
 ## @param data Data directory configuration, refer to values.yaml for parameters.
 ##
-data: {}
-  # name: "vaultwarden-data"
-  # size: "15Gi"
-  # class: ""
-  # path: "/data"
+data:
+  name: "vaultwarden-data"
+  size: "15Gi"
+  class: "local-path"
+  path: "/data"
+  accessModes:
+    - "ReadWriteOnce"
   # keepPvc: false
 
 ## @param attachments Attachments directory configuration, refer to values.yaml for parameters.
@@ -513,16 +515,6 @@ orgGroupsEnabled: "false"
 ##
 
 ## Yubico (Yubikey) settings
-yubico:
-  ## @param yubico.clientId Yubico client ID
-  ##
-  clientId: ""
-  ## @param yubico.secretKey Yubico secret key
-  ##
-  secretKey: ""
-  ## @param yubico.server Specify a Yubico server, otherwise the default servers will be used
-  ##
-  server: ""
 
 ## Duo settings
 duo:
